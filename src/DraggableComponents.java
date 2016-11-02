@@ -45,13 +45,14 @@ public class DraggableComponents extends JFrame {
 		contentPane.add(btnDragMeTooo);
 		
 		JLabel lblButtonPosition = new JLabel("Button Position: ");
-		lblButtonPosition.setBounds(34, 211, 144, 14);
+		lblButtonPosition.setBounds(34, 211, 315, 14);
 		contentPane.add(lblButtonPosition);
 		
-		DraggableMotionListener frank = new DraggableMotionListener(textBoxPos, lblMousePosition, lblDragMe);
+		DraggableMotionListener frank = new DraggableMotionListener(textBoxPos, lblMousePosition, lblDragMe, lblButtonPosition, btnDragMeTooo);
 		contentPane.addMouseMotionListener(frank);
 		
 		lblDragMe.addMouseMotionListener(new DraggableMotionMover(contentPane));
+		btnDragMeTooo.addMouseMotionListener(new DraggableMotionMover(contentPane));
 		
 
 	}
