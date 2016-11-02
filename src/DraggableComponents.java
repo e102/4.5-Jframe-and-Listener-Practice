@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,15 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class DraggableComponents extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtDragMeAround;
 	/**
 	 * Create the frame.
 	 */
 	public DraggableComponents() {
+		//setting up content pane
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -24,15 +27,32 @@ public class DraggableComponents extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Text Box Position");
-		lblNewLabel_1.setBounds(168, 236, 120, 14);
-		contentPane.add(lblNewLabel_1);
+		//setting up text boxes, lebels etc...
+		JLabel textBoxPos = new JLabel("Text Box Position: ");
+		textBoxPos.setBounds(34, 236, 226, 14);
+		contentPane.add(textBoxPos);
 		
-		txtDragMeAround = new JTextField();
-		txtDragMeAround.setBackground(Color.GREEN);
-		txtDragMeAround.setText("Drag me around");
-		txtDragMeAround.setBounds(10, 98, 100, 25);
-		contentPane.add(txtDragMeAround);
-		txtDragMeAround.setColumns(10);
+		JLabel lblDragMe = new JLabel("Drag me!");
+		lblDragMe.setBounds(34, 110, 66, 14);
+		contentPane.add(lblDragMe);
+		
+		JLabel lblMousePosition = new JLabel("Mouse Position: ");
+		lblMousePosition.setBounds(34, 222, 226, 14);
+		contentPane.add(lblMousePosition);
+		
+		JButton btnDragMeTooo = new JButton("Drag me tooo!");
+		btnDragMeTooo.setBounds(181, 79, 89, 23);
+		contentPane.add(btnDragMeTooo);
+		
+		JLabel lblButtonPosition = new JLabel("Button Position: ");
+		lblButtonPosition.setBounds(34, 211, 144, 14);
+		contentPane.add(lblButtonPosition);
+		
+		DraggableMotionListener frank = new DraggableMotionListener(textBoxPos, lblMousePosition, lblDragMe);
+		contentPane.addMouseMotionListener(frank);
+		
+		lblDragMe.addMouseMotionListener(new DraggableMotionMover(contentPane));
+		
+
 	}
 }
